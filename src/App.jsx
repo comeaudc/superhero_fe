@@ -1,28 +1,27 @@
+import NavBar from "./components/NavBar/NavBar.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import CreateForm from "./pages/CreateForm.jsx";
 import { useState } from "react";
-import People from "./components/People";
 import "./App.css";
 
 function App() {
-  const [data, setData] = useState(null);
+  const [page, setPage] = useState("home");
 
-  async function handleGetData() {
-    try {
-      let data = await fetch("http://localhost:3001/api/char");
-      data = await data.json();
-
-      setData(data);
-    } catch (error) {
-      console.error(error.message);
+  function showPage() {
+    switch (page) {
+      case "home":
+        return <HomePage />;
+      case "create":
+        return <CreateForm />;
+      default:
+        return <h1>404 Not Found</h1>;
     }
   }
 
   return (
     <>
-      {data ? (
-        data.map((el) => <People {...el} />)
-      ) : (
-        <button onClick={handleGetData}>Click for Data</button>
-      )}
+      <NavBar setPage={setPage} />
+      {showPage()}
     </>
   );
 }
