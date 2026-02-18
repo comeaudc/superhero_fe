@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import CharCard from "../components/CharCard/CharCard.jsx";
 
 export default function HomePage() {
   const [characters, setCharacters] = useState(null);
@@ -14,10 +15,12 @@ export default function HomePage() {
     }
   }
 
+
+
   return (
     <div className="home">
       {characters ? (
-        <h1>Data we Fetched</h1>
+        characters.map((char) => <CharCard />)
       ) : (
         <button onClick={handleFetch}>Fetch Data</button>
       )}
