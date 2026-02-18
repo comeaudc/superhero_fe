@@ -21,3 +21,10 @@ nav {
   align-items: center;
   flex-wrap: wrap;
 }
+
+.card {
+  text-align: center;
+  width: 250px;
+  border: 4px ridge black;
+  border-radius: 25px;
+}
