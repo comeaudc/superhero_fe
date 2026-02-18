@@ -18,7 +18,9 @@ export default function HomePage() {
   return (
     <div className="home">
       {characters ? (
-        characters.map((char) => <CharCard key={char._id} char={char} />)
+        characters.map((char) => (
+          <CharCard key={char._id} char={char} setCharacters={setCharacters} />
+        ))
       ) : (
         <button onClick={handleFetch}>Fetch Data</button>
       )}
