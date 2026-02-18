@@ -15,12 +15,10 @@ export default function HomePage() {
     }
   }
 
-
-
   return (
     <div className="home">
       {characters ? (
-        characters.map((char) => <CharCard />)
+        characters.map((char) => <CharCard key={char._id} char={char} />)
       ) : (
         <button onClick={handleFetch}>Fetch Data</button>
       )}
