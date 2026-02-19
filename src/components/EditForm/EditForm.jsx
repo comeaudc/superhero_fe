@@ -1,16 +1,44 @@
 import { useState } from "react";
+import axios from "axios";
 
-export default function EditForm() {
+export default function EditForm({ char, setEdit }) {
   const [formData, setFormData] = useState({
-    name: "",
-    alias: "",
-    powers: "",
-    hero: false,
+    name: char.name,
+    alias: char.alias,
+    powers: char.powers.toString(),
+    hero: char.hero,
   });
 
-  function handleChange(e) {}
+  function handleChange(e) {
+    if (e.target.type == "checkbox") {
+      setFormData({ ...formData, hero: e.target.checked });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+  }
 
-  function handleSubmit(e) {}
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      // Make a copy
+      let copy = { ...formData, powers: formData.powers.split(",") };
+
+      // Attempt to update in DB
+      let res = await axios.put(
+        `http://localhost:3000/api/char/${char._id}`,
+        copy,
+      );
+
+      console.log(res.data);
+
+      // Update the state if successfull
+
+      // Toggle back to card view
+    } catch (error) {
+      console.error(error.message);
+      alert(error.message);
+    }
+  }
 
   return (
     <fieldset style={{ textAlign: "center" }}>
@@ -57,7 +85,7 @@ export default function EditForm() {
             type="checkbox"
             name="hero"
             onChange={handleChange}
-            value={formData.hero}
+            checked={formData.hero}
           />
         </label>
         <br />

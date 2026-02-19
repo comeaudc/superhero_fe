@@ -29,9 +29,15 @@ nav {
   border-radius: 25px;
 }
 
-.createForm{
+.createForm {
   height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+textarea,
+input[type="text"] {
+  field-sizing: content;
+  max-width: 250px;
 }

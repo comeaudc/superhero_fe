@@ -86,7 +86,7 @@ export default function CreateForm() {
               type="checkbox"
               name="hero"
               onChange={handleChange}
-              value={formData.hero}
+              checked={formData.hero}
             />
           </label>
           <br />

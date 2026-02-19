@@ -24,7 +24,7 @@ export default function CharCard({ char, setCharacters }) {
   return (
     <>
       {edit ? (
-        <EditForm />
+        <EditForm char={char} setEdit={setEdit} />
       ) : (
         <div className="card">
           <h2>{char.name}</h2>
