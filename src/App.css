@@ -28,3 +28,10 @@ nav {
   border: 4px ridge black;
   border-radius: 25px;
 }
+
+.createForm{
+  height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,12 +1,14 @@
 import axios from "axios";
 
 export default function CharCard({ char, setCharacters }) {
+
   let powerList = char.powers.map((power) => <li>{power}</li>);
 
   async function handleDelete() {
     try {
       await axios.delete(`http://localhost:3000/api/char/${char._id}`);
 
+      // Filtering out deleted char from state, and triggering rerender
       setCharacters((c) => c.filter((el) => el._id !== char._id));
       
       alert("Successful deletion");
