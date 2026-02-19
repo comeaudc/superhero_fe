@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function EditForm({ char, setEdit }) {
+export default function EditForm({ char, setEdit, setCharacters }) {
   const [formData, setFormData] = useState({
     name: char.name,
     alias: char.alias,
@@ -29,11 +29,16 @@ export default function EditForm({ char, setEdit }) {
         copy,
       );
 
-      console.log(res.data);
-
-      // Update the state if successfull
+      // Update state with updated object
+      setCharacters((c) =>
+        c.map((char) => {
+          if (char._id === res.data._id) return res.data;
+          else return char;
+        }),
+      );
 
       // Toggle back to card view
+      setEdit(false);
     } catch (error) {
       console.error(error.message);
       alert(error.message);
@@ -89,7 +94,7 @@ export default function EditForm({ char, setEdit }) {
           />
         </label>
         <br />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Save" />
       </form>
     </fieldset>
   );
