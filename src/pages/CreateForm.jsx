@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 
 export default function CreateForm() {
   const [formData, setFormData] = useState({
@@ -17,34 +16,11 @@ export default function CreateForm() {
     }
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      // Manipulate data to final state
-      let copy = { ...formData };
-
-      copy.powers = copy.powers.split(",");
-
-      let res = await axios.post("http://localhost:3000/api/char", copy);
-
-      //handle response
-      setFormData({
-        name: "",
-        alias: "",
-        powers: "",
-        hero: false,
-      });
-    } catch (err) {
-      console.error(err.message);
-      alert(err.message);
-    }
-  }
-
   return (
     <div className="createForm">
       <fieldset style={{ textAlign: "center" }}>
         <legend>Create a New Character</legend>
-        <form onSubmit={handleSubmit}>
+        <form>
           <label>
             Name:
             <input

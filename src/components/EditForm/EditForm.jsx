@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 
 export default function EditForm({ char, setEdit, setCharacters }) {
   const [formData, setFormData] = useState({
@@ -17,38 +16,10 @@ export default function EditForm({ char, setEdit, setCharacters }) {
     }
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      // Make a copy
-      let copy = { ...formData, powers: formData.powers.split(",") };
-
-      // Attempt to update in DB
-      let res = await axios.put(
-        `http://localhost:3000/api/char/${char._id}`,
-        copy,
-      );
-
-      // Update state with updated object
-      setCharacters((c) =>
-        c.map((char) => {
-          if (char._id === res.data._id) return res.data;
-          else return char;
-        }),
-      );
-
-      // Toggle back to card view
-      setEdit(false);
-    } catch (error) {
-      console.error(error.message);
-      alert(error.message);
-    }
-  }
-
   return (
     <fieldset style={{ textAlign: "center" }}>
       <legend>Create a New Character</legend>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label>
           Name:
           <input

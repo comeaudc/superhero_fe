@@ -1,8 +1,10 @@
-export default function NavBar({ setPage }) {
+import { Link } from "react-router";
+
+export default function NavBar() {
   return (
     <nav>
-      <button onClick={()=> setPage('home')}>Home</button>
-      <button onClick={()=>{setPage('create')}}>Create New Character</button>
+      <Link to={"/"}><button>Home</button></Link>
+      <Link to={"/create"}><button >Create New Character</button></Link> 
     </nav>
   );
 }
