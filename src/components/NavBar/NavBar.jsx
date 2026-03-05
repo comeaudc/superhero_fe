@@ -1,10 +1,11 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 
 export default function NavBar() {
   return (
     <nav>
-      <Link to={"/"}><button>Home</button></Link>
-      <Link to={"/create"}><button >Create New Character</button></Link> 
+      {/* Link tag replaces an <a></a> */}
+      <NavLink to={"/"}><button>Home</button></NavLink>
+      <NavLink to={"/create"}><button >Create New Character</button></NavLink> 
     </nav>
   );
 }

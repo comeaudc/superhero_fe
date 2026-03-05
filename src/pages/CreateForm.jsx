@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import axios from "axios";
 
 export default function CreateForm() {
+  const nav = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     alias: "",
@@ -16,11 +19,24 @@ export default function CreateForm() {
     }
   }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      let copy = { ...formData, powers: formData.powers.split(",") };
+
+      let res = await axios.post("http://localhost:3000/api/char", copy);
+
+      nav('/')
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
   return (
     <div className="createForm">
       <fieldset style={{ textAlign: "center" }}>
         <legend>Create a New Character</legend>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>
             Name:
             <input
