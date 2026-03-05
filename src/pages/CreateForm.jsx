@@ -22,11 +22,14 @@ export default function CreateForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      // Made a copy of state to turn powers into an array
       let copy = { ...formData, powers: formData.powers.split(",") };
 
+      // made request
       let res = await axios.post("http://localhost:3000/api/char", copy);
 
-      nav('/')
+      // if successful navigate back to homepage
+      nav("/");
     } catch (error) {
       console.error(error.message);
     }
