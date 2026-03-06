@@ -9,13 +9,15 @@ export default function CharCard({ char, setCharacters }) {
 
   async function handleDelete() {
     try {
-      await axios.delete(`http://localhost:3000/api/char/${char._id}`);
+      await axios.delete(
+        `https://superhero-server-x2wb.onrender.com/api/char/${char._id}`,
+      );
 
       alert("Successfully Deleted");
 
-      setCharacters(c => {
-        return c.filter((character) => character._id !== char._id)
-      })
+      setCharacters((c) => {
+        return c.filter((character) => character._id !== char._id);
+      });
     } catch (error) {
       console.error(error.message);
     }

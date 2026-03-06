@@ -13,7 +13,7 @@ export default function HomePage() {
 
   async function getCharacters() {
     try {
-      let res = await axios.get("http://localhost:3000/api/char/");
+      let res = await axios.get("https://superhero-server-x2wb.onrender.com/api/char/");
 
       setCharacters(res.data);
     } catch (error) {

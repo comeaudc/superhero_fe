@@ -26,7 +26,10 @@ export default function CreateForm() {
       let copy = { ...formData, powers: formData.powers.split(",") };
 
       // made request
-      let res = await axios.post("http://localhost:3000/api/char", copy);
+      let res = await axios.post(
+        "https://superhero-server-x2wb.onrender.com/api/char",
+        copy,
+      );
 
       // if successful navigate back to homepage
       nav("/");

@@ -26,7 +26,7 @@ export default function EditForm({ char, setEdit, setCharacters }) {
 
       // made request
       let res = await axios.put(
-        `http://localhost:3000/api/char/${char._id}`,
+        `https://superhero-server-x2wb.onrender.com/api/char/${char._id}`,
         copy,
       );
 
